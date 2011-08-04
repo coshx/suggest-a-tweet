@@ -54,7 +54,7 @@ var twitterNameLabel = Titanium.UI.createLabel({
 
 var twitterNameInput = Titanium.UI.createTextField({
   hintText: "BillyJoeBob",
-  height: 30,
+  height: 45,
   top: 10,
   width: 250,
   borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -63,8 +63,6 @@ var twitterNameInput = Titanium.UI.createTextField({
 twitterNameInput.addEventListener('blur', function(e) {
   twitterNameInput.blur();
 });
-
-
 
 var okButton = Titanium.UI.createButton({
   title:"Get Suggestions",
@@ -80,30 +78,6 @@ okButton.addEventListener('click', function(e) {
 suggestTweetWindow.add(twitterNameLabel);
 suggestTweetWindow.add(twitterNameInput);
 suggestTweetWindow.add(okButton);
-
-//
-// create controls tab and root window
-//
-var win2 = Titanium.UI.createWindow({  
-    title:'Tab 2',
-    backgroundColor:'#fff'
-});
-var tab2 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Tab 2',
-    window:win2
-});
-
-var label2 = Titanium.UI.createLabel({
-  color:'#999',
-  text:'I am Window 2',
-  font:{fontSize:20,fontFamily:'Helvetica Neue'},
-  textAlign:'center',
-  width:'auto'
-});
-
-win2.add(label2);
-
 
 //
 //  add tabs
