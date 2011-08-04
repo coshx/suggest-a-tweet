@@ -32,3 +32,5 @@ Logfile initialized
 Warning: Activity not started, its current task has been brought to the front
 
 [INFO] Relaunched Suggest-A-Tweet ... Application should be running.
+[DEBUG] signal caught: 15
+[DEBUG] calling emulator kill on 12870

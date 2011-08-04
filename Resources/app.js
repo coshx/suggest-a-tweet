@@ -4,9 +4,11 @@ Titanium.UI.setBackgroundColor('#000');
 // use a debug tab if we want to run tests
 var DEBUG = true;
 
-Ti.include("twitter.js"); // load Twitter-related functions
-Ti.include("suggestion_detail_window.js"); // load function to create the detail windows for suggestions
-Ti.include("ui.js"); // load the UI elements
+Ti.include(
+  "twitter.js", // load Twitter-related functions
+  "suggestion_detail_window.js", // load function to create the detail windows for suggestions
+  "suggestion_window.js", // load function that will create the suggestions window
+  "ui.js"); // load the UI elements
 
 
 // if we're in debug mode, show the tabs, otherwise don't
