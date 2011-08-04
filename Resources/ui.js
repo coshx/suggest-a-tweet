@@ -15,14 +15,6 @@ var suggestTweetWindow = Titanium.UI.createWindow({
     tabBarHidden: true,    
 });
 
-var nextScreen = Titanium.UI.createWindow({  
-    title:'Suggestions',
-    backgroundColor:'#fff',
-    layout:'vertical',
-    tabBarHidden: true,
-    backButtonTitle: "Back"    
-}); 
-
 // debugging stuff
   var debugWin = Titanium.UI.createWindow({  
     title:'DEBUG',
@@ -72,7 +64,7 @@ var okButton = Titanium.UI.createButton({
 });
 
 okButton.addEventListener('click', function(e) {
-  mainTab.open(nextScreen);
+  mainTab.open(createSuggestionScreen());
 }); 
 
 suggestTweetWindow.add(twitterNameLabel);
@@ -80,7 +72,49 @@ suggestTweetWindow.add(twitterNameInput);
 suggestTweetWindow.add(okButton);
 
 //
+// Twitter tableview in the suggestionScreen
+// need to wrap creation in function because nothing can be added to the window until it is opened
+//
+var createSuggestionScreen = function() {
+  var suggestionScreen = Titanium.UI.createWindow({  
+    title:'Suggestions',
+    backgroundColor:'#fff',
+    //layout:'vertical',
+    tabBarHidden: true,
+    backButtonTitle: "Back"    
+  }); 
+
+  var suggestionTable = Ti.UI.createTableView();
+  
+  suggestionTable.addEventListener('click', function(e) {
+    mainTab.open(createSuggestionDetailWindow(e.rowData));
+  });
+  
+  if(DEBUG) { // fill in some test data if we're in debug mode
+    Ti.API.info("adding test values to suggestionTable");
+    (function () {
+  
+      var testValues = [
+        {title:'#lolcat', hasChild:true},
+        {title:'the', hasChild:true},
+        {title:'ZOMG', hasChild:true},
+        {title:'#wtf', hasChild:true},
+        {title:'#neatohashtag', hasChild:true},
+        {title:"日本語です。", hasChild:true}
+        ];
+        
+        suggestionTable.setData(testValues);
+    })();  
+  };
+  suggestionScreen.add(suggestionTable);
+  
+  return suggestionScreen;
+};
+
+
+//
 //  add tabs
 //
 tabGroup.addTab(mainTab);
-tabGroup.addTab(debugTab);    
+tabGroup.addTab(debugTab);
+
