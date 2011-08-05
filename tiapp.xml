@@ -7,13 +7,13 @@
         <target device="android">true</target>
         <target device="blackberry">false</target>
     </deployment-targets>
-    <id>com.coshx.suggestatweet</id>
+    <id>com.coshx.tweetalyze</id>
     <name>Suggest-A-Tweet</name>
     <version>1.0</version>
-    <publisher>davekapp</publisher>
-    <url>http://www.coshx.com/suggestatweet</url>
-    <description>not specified</description>
-    <copyright>2011 by davekapp</copyright>
+    <publisher>Coshx Labs</publisher>
+    <url>http://www.coshx.com/tweetalyze</url>
+    <description>Want to analyze someone's Tweet stream? Well, here you go!</description>
+    <copyright>2011 by Coshx Labs</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
