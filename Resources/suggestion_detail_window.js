@@ -1,9 +1,5 @@
 var createSuggestionDetailWindow = function(suggestionRow) {
   var text = suggestionRow.title;
-  // for(var prop in suggestionRow) {
-    // Ti.API.info(prop);
-    // Ti.API.info(suggestionRow[prop]);
-  // }
   
   var win = Ti.UI.createWindow({
     title:text,

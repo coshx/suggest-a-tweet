@@ -5,7 +5,7 @@
 var getTweetsForUser = function(userName) {
   var request = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name="
   request += userName;
-  request += "&count=2";
+  request += "&count=200";
   
   var c = Ti.Network.createHTTPClient(); // c for Client
   c.timeout = 10000;
@@ -32,21 +32,34 @@ var getTweetsForUser = function(userName) {
 };
 
 var parseTweets = function(tweetsJSON) {
-  values = [];
+  words = {};
   try {
     for (var i = 0, length = tweetsJSON.length; i < length; i++) {
+      // get the count of all the words in all the tweets into the words object
       (function(){
         var tweet = tweetsJSON[i];
-        Ti.API.info("next tweet: " + tweet);
         var text = tweet.text;
+        wordsInText = text.split(" ");
+        for (var j = 0, length = wordsInText.length; j < length; j++ ) {
+          word = wordsInText[j];
+          if(words[word] === undefined) {
+            words[word] = 1;
+          } else {
+            words[word]++;
+          }
+        }
         var user = tweet.user.screen_name;
-        Ti.API.info("user: " + user + " text: " + text);
-        values.push({
-          title: text,
-          hasChild: true,
-          count: i
-        });
       })();
+      
+      // now make values that can be used as rows in a table out of the things in words
+      values = [];
+      for(word in words) {
+        values.push({
+          title: word,
+          hasChild: true,
+          count: words[word]
+        });
+      }
     }
     
     Ti.API.fireEvent("tweetsLoaded", {
