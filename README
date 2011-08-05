@@ -12,7 +12,8 @@ it was used by the person. You can filter the results by using the search box at
 a # sign you can see all the hashtags the person has used, and likewise an @ will show all people they
 directly referenced. If you want to search for the Tweets for a different user, go back to the top
 screen and type in another name. (Some Android versions don't like this and crash if you try to search for a user
-again. I'm not sure why this is.)
+again. I'm not sure why this is. It works on the first try though, so if you want to see stats for multiple
+users just run the program several times.)
 
 --- Running this app ---
 

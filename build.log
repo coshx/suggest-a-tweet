@@ -5,12 +5,20 @@ Logfile initialized
 [INFO] Titanium SDK version: 1.7.2 (07/21/11 09:36 97c3689)
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
-[DEBUG] Device connected... (waited 0 seconds)
-[DEBUG] waited 0.016890 seconds on emulator to get ready
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[DEBUG] Device connected... (waited 15 seconds)
+[DEBUG] waited 15.083641 seconds on emulator to get ready
+[INFO] Waiting for the Android Emulator to become available
 [DEBUG] com.coshx.suggestatweet installed? True
 [INFO] Fastdev server running, deploying in Fastdev mode
 [INFO] Copying project resources..
+[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/app.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/app.js
+[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/suggestion_detail_window.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/suggestion_detail_window.js
 [TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/suggestion_window.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/suggestion_window.js
+[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/twitter.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/twitter.js
+[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/ui.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/ui.js
 [INFO] Tiapp.xml unchanged, skipping class generation
 [DEBUG] Processing Android resource drawables
 [DEBUG] found drawable-long-land-hdpi splash screen at /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/android/images/res-long-land-hdpi/default.png
@@ -27,8 +35,5 @@ Logfile initialized
 [INFO] Re-launching application ... Suggest-A-Tweet
 [INFO] Launching application ... Suggest-A-Tweet
 [TRACE] Launch output: Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.coshx.suggestatweet/.SuggestATweetActivity }
-Warning: Activity not started, its current task has been brought to the front
+[1]   Segmentation fault      am start -a andr...
 
-[DEBUG] signal caught: 15
-[DEBUG] calling emulator kill on 33322
-[DEBUG] signal caught: 3
