@@ -61,7 +61,10 @@ var openSuggestionWindow = function() {
 }
 
 twitterNameInput.addEventListener("return", function(e) {
-  openSuggestionWindow();
+  // don't open the window if they didn't type anything
+  if(twitterNameInput.value.trim().length > 0) {
+    openSuggestionWindow();  
+  }  
 });
 
 var okButton = Titanium.UI.createButton({

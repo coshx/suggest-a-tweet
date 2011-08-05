@@ -2,15 +2,15 @@
 // https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=200
 // so we just need to fill in the screen name bit and the rest should be handled
 
+// on android we can't do nearly as many tweets as crunching the numbers takes a really long time
+// so android => 50, iOS => 200 (max allowed is 200)
+var tweetCount = 200;
+if(ON_ANDROID){ tweetCount = 50; }
+
 var getTweetsForUser = function(userName) {
   var request = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name="
   request += userName;
-  // android takes way longer to process - memory issues? - so get 50 on android and full 200 on ios
-  if(ON_ANDROID) {
-    request += "&count=50";
-  } else {
-    request += "&count=200";  
-  }
+  request += "&count=" + tweetCount;
   
   var c = Ti.Network.createHTTPClient(); // c for Client
   c.timeout = 10000;
@@ -39,6 +39,7 @@ var getTweetsForUser = function(userName) {
 var parseTweets = function(tweetsJSON) {
   var words = {};
   var totalWordCount = 0;
+  
   try {
     for (var i = 0, length = tweetsJSON.length; i < length; i++) {
       // get the count of all the words in all the tweets into the words object
@@ -51,6 +52,7 @@ var parseTweets = function(tweetsJSON) {
           word = wordsInText[j].toLowerCase(); // case sensitive messes up matching, so all lower
           word = word.replace(/[^\w#@]/g, ""); // get rid of all non-word characters except # and @ since those mean something specific in Tweets
           if (wordsToSkip.indexOf(word) !== -1) {continue;} // if it's in the words to skip, don't count it
+          
           totalWordCount += 1;
           if(word.length < 1 || words[word] === undefined) {
             words[word] = 1;
