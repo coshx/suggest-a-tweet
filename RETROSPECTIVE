@@ -1,0 +1,41 @@
+So, how did it all turn out? Aside from having to shift direction not-that-far-in, fairly well. I had several
+goals for this project. They were (in no specific order):
+
+1) Evaluate Titanium
+2) Write a non-trivial program in JavaScript
+3) Make a mobile application
+4) Do something with the Twitter API
+5) Learn a little about Android
+
+So let's go over these things in order:
+
+1) I think it's ... okay. Looking at their site, it has quite a few major apps that were made using it in the store,
+so it has a reasonable amount of support. This is a good thing. Their pricing structure doesn't thrill me, mainly
+because you must buy the "professional" level a year at a time. Were I to use this for a reasonably large project I
+wouldn't want to commit to a whole year.
+
+Would I use Titanium again? Maybe. The API is pretty good. Support for iOS seems to be excellent, Android not quite as much.
+I ran into far more problems with Android than I did with iOS. The documentation is decent, but they really need
+more tutorials, especially for how to use the UI elements. The large amount of sample programs available is a big big plus.
+API docs are alright but need examples.
+
+2) This was a success. My JS knowledge needed augmenting and I got what I wanted. I learned a lot about JS and had to
+structure a reasonable amount of JS code. I like JS quite a bit, it's just too bad there's so many weird edge cases
+for the language. Oh well. Those are partially taken care of by libraries (hi jQuery!) in the browser but those are
+somewhat centered on DOM-manipulation, and there's no DOM in non-browser JavaScript.
+
+3) Success. The applicaiton runs on mobile devices. :)
+
+4) Partial success. I was able to use Twitter's API to get information, which is what I wanted, but by the time I was
+ready to deal with OAuth I didn't have enough time left to really do it right. So I didn't do it at all. :/
+
+I'd like to try dealing with OAuth and more extensive Twitter API use in the future. I think the fact that Twitter makes
+so much info available through its API is great and one of the reasons I like the service.
+
+5) Success. I hadn't done anything with Android (other than poke at the handsets of some friends) and I got to work with
+it a little here. Titanium has some issues with Android (some of the sample code won't work on it, and the way objects are
+re-parented causes my app to blow up there for reasons I never quite figured out), but it does run there. I think if I had
+more time I could get it working better on Android. All that said, I got to try developing with Android and it went okay.
+Side note: the emulator really is as terrifyingly slow as people say. Oh well.
+
+And there you have it. All-in-all, I think this was a good (and fun) project for a hackathon! :)

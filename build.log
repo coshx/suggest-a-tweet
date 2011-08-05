@@ -28,3 +28,4 @@ Logfile initialized
 [INFO] Launching application ... Suggest-A-Tweet
 [TRACE] Launch output: Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.coshx.tweetalyze/.SuggestATweetActivity }
 
+[INFO] Android Emulator has exited
