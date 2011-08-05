@@ -46,6 +46,9 @@ var searchBar = Titanium.UI.createSearchBar({
   height: searchBarHeight
 });
 
+suggestionTable.search = searchBar;
+suggestionTable.searchHidden = true;
+
 suggestionTable.addEventListener('click', function(e) {
   mainTab.open(createSuggestionDetailWindow(e.rowData));
 });
@@ -57,9 +60,6 @@ if(DEBUG) { // fill in some test data if we're in debug mode
     suggestionTable.setData(testValues);
   })();  
 };
-
-suggestionTable.search = searchBar;
-suggestionTable.searchHidden = true;
 
 searchBar.addEventListener('change', function(e)
 {
@@ -84,6 +84,8 @@ suggestionScreen.addEventListener("open", function(e) {
 });
 
 Ti.API.addEventListener("tweetsLoaded", function(e) {
+  Ti.API.info("got tweetsLoaded");
+  
   if(e.success === true) {
     loadingLabel.hide();
     loadingIndicator.hide();
@@ -104,17 +106,48 @@ Ti.API.addEventListener("tweetsLoaded", function(e) {
   }
 });
 
-// need to wrap creation in function because nothing can be added to the window until it is opened
-var createSuggestionWindow = function() {
-
-  // start off with the loading text and the indicator, then when tweets are loaded, change to the table
+// attach widgets to window once
+var attachWidgetsToWindow = function() {
   suggestionScreen.add(loadingLabel);
   suggestionScreen.add(loadingIndicator);
-  searchBar.hide();
-  suggestionScreen.add(searchBar);
-  suggestionTable.hide();  
+  // on android we leave the bar as part of the table, on iOS we add it to the window
+  if(ON_ANDROID) {
+    suggestionTable.top = 0;
+    suggestionTable.searchHidden = false;
+  } else {
+    suggestionScreen.add(searchBar);  
+  }  
   suggestionScreen.add(suggestionTable);
+};
+// call it once to initially attach everything
+(function() {attachWidgetsToWindow();}());
+
+// needed on android to prevent blowing up
+var removeWidgetsFromWindow = function(suggestionScreen) {
+  if(!ON_ANDROID) { return; }
   
+  suggestionScreen.remove(loadingLabel);
+  suggestionScreen.remove(loadingIndicator);
+  suggestionScreen.remove(suggestionTable);
+}
+
+
+// set initial visibilities of widgets when screen is opened and empty search bar
+var setupSuggestionUI = function() {
+  loadingLabel.show();
+  loadingIndicator.show();
+  searchBar.hide();
+  suggestionTable.hide();
+  searchBar.value = ""; 
+};
+
+// need to wrap creation in function because nothing can be added to the window until it is opened
+var createSuggestionWindow = function() {
+  // on android we need to unattach everything then re-attach it or else it blows up
+  if(ON_ANDROID) {
+     //removeWidgetsFromWindow();
+  }
+  setupSuggestionUI();    
   return suggestionScreen;
 };
 

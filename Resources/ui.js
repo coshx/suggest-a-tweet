@@ -56,16 +56,37 @@ twitterNameInput.addEventListener('blur', function(e) {
   twitterNameInput.blur();
 });
 
+var openSuggestionWindow = function() {
+  mainTab.open(createSuggestionWindow());
+}
+
+twitterNameInput.addEventListener("return", function(e) {
+  openSuggestionWindow();
+});
+
 var okButton = Titanium.UI.createButton({
   title:"Analyze Tweets",
   width:250,
   height:30,
-  top: 10
+  top: 10,
+  enabled: false,
+  color: "#AAA"
 });
 
 okButton.addEventListener('click', function(e) {
-  mainTab.open(createSuggestionWindow());
+  openSuggestionWindow();
 }); 
+
+// disable ok button if there's no twitter username
+twitterNameInput.addEventListener('change', function(e) {
+  if(twitterNameInput.value.trim() === "") {
+    okButton.color = "#AAA";
+    okButton.enabled = false;    
+  } else {
+    okButton.color = "#00ACE6";
+    okButton.enabled = true;    
+  }
+});
 
 suggestTweetWindow.add(twitterNameLabel);
 suggestTweetWindow.add(twitterNameInput);

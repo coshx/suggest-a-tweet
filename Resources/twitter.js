@@ -19,7 +19,7 @@ var getTweetsForUser = function(userName) {
   c.onload = function() {
     Ti.API.info("in onload, got a success");
     try {
-      Ti.API.info(this.responseText);
+      Ti.API.info("Response text: " + this.responseText);
       obj = JSON.parse(this.responseText);
       parseTweets(obj);  
     } catch(e) {
@@ -86,5 +86,5 @@ var wordsToSkip = [
   "in", "as", "get", "so", "this", "an", "all",
   "to", "had", "are", "has", "did", "or", "got",
   " ", "by", "it", "thats", "from", "than", "before",
-  "of", "lot"
+  "of", "lot", "its", "says", "will" 
 ];

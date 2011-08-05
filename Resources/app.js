@@ -2,7 +2,7 @@
 Titanium.UI.setBackgroundColor('#000');
 
 // use a debug tab if we want to run tests
-var DEBUG = true;
+var DEBUG = false;
 
 var ON_ANDROID = false;
 if(Ti.Platform.osname === "android") { ON_ANDROID = true; }
