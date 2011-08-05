@@ -3,8 +3,9 @@ var printResponse = function(response) {
   //Ti.API.info(response);
 };
 
-var testTwitter = function() {
+var testTwitter = (function() {
   Ti.API.info("calling getTweetsForUser...");
-  getTweetsForUser("HappyMrDave", printResponse, printResponse);
-}();
+  getTweetsForUser("HappyMrDave");
+});
+//();
 

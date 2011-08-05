@@ -6,10 +6,12 @@ var DEBUG = true;
 
 Ti.include(
   "twitter.js", // load Twitter-related functions
+  "js_utilities.js", // assorted utility functions
+  "test_tweet_values.js", // sample tweet values for testing
   "suggestion_detail_window.js", // load function to create the detail windows for suggestions
   "suggestion_window.js", // load function that will create the suggestions window
-  "ui.js"); // load the UI elements
-
+  "ui.js" // load the UI elements
+); 
 
 // if we're in debug mode, show the tabs, otherwise don't
 if(DEBUG) {
