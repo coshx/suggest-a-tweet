@@ -1,1 +1,3 @@
 Place your license text here.  This file will be incorporated with your app at package time.
+
+Need to decide on this before packaging.

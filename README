@@ -30,7 +30,15 @@ you can get started at http://developer.android.com/sdk/index.html.
 
 Then just click the little 'play' button in the upper-left in the app explorer view. If you don't see that, try clicking
 the arrow next to the 'play' icon in the main icon bar. The iPhone version runs much faster than the Android one and
-looks nicer, so I really suggest that. 
+looks nicer, so I really suggest that.
+
+
+--- Things to do in the future ---
+
+- Add some sort of backend aggregating server so you can compare people to Twitter as a whole
+- Add in OAuth support so you can log in and analyze your home timeline (instead of just your own Tweets)
+- Get more statistics - eg, what percentage of Tweets contain a given word?
+- Stability fixes for Android  
 
 
 ----------------------------------
