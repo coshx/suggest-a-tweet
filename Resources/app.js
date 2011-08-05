@@ -4,6 +4,9 @@ Titanium.UI.setBackgroundColor('#000');
 // use a debug tab if we want to run tests
 var DEBUG = true;
 
+var ON_ANDROID = false;
+if(Ti.Platform.osname === "android") { ON_ANDROID = true; }
+
 Ti.include(
   "twitter.js", // load Twitter-related functions
   "js_utilities.js", // assorted utility functions

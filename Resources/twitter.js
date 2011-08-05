@@ -5,7 +5,12 @@
 var getTweetsForUser = function(userName) {
   var request = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name="
   request += userName;
-  request += "&count=200";
+  // android takes way longer to process - memory issues? - so get 50 on android and full 200 on ios
+  if(ON_ANDROID) {
+    request += "&count=50";
+  } else {
+    request += "&count=200";  
+  }
   
   var c = Ti.Network.createHTTPClient(); // c for Client
   c.timeout = 10000;
@@ -25,7 +30,7 @@ var getTweetsForUser = function(userName) {
   
   c.onerror = function() {
     Ti.API.info("got an error when trying to get tweets");
-    alert("Error in connecting to Twitter.");
+    alert("Error in connecting to Twitter. Are you sure that's a real username?");
   };
   
   c.send(); // this is what actually causes the connection to run, not open  
