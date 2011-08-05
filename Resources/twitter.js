@@ -76,7 +76,7 @@ var parseTweets = function(tweetsJSON) {
       }
     }
     
-    // take a gander at suggestion_window.js to see the event handler
+    // take a gander at analysis_window.js to see the event handler
     Ti.API.fireEvent("tweetsLoaded", {
       success: true,
       values: values,
