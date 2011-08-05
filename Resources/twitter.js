@@ -8,6 +8,7 @@ var tweetCount = 200;
 if(ON_ANDROID){ tweetCount = 50; }
 
 var getTweetsForUser = function(userName) {
+  userName = userName.replace(/ /g, ""); // take spaces out of username, as you can't have those in twitter
   var request = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name="
   request += userName;
   request += "&count=" + tweetCount;
