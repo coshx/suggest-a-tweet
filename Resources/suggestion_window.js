@@ -32,7 +32,19 @@ var suggestionScreen = Titanium.UI.createWindow({
   backButtonTitle: "Back"    
 }); 
 
-var suggestionTable = Ti.UI.createTableView();
+var searchBarHeight = 44;
+
+var suggestionTable = Ti.UI.createTableView({
+  top: searchBarHeight
+});
+
+// search bar code adapted from http://wiki.appcelerator.org/display/guides/Using+TableViews#UsingTableViews-TableViewuserinteractionandevents
+var searchBar = Titanium.UI.createSearchBar({
+  hintText:'Type to filter',
+  showCancel:true,
+  top:0,
+  height: searchBarHeight
+});
 
 suggestionTable.addEventListener('click', function(e) {
   mainTab.open(createSuggestionDetailWindow(e.rowData));
@@ -46,6 +58,26 @@ if(DEBUG) { // fill in some test data if we're in debug mode
   })();  
 };
 
+suggestionTable.search = searchBar;
+suggestionTable.searchHidden = true;
+
+searchBar.addEventListener('change', function(e)
+{
+  // search rows for value of string as user types
+  e.source.value;
+});
+
+searchBar.addEventListener('return', function(e)
+{
+  // dismiss the keypad when user presses return
+  e.source.blur();
+});
+
+searchBar.addEventListener('cancel', function(e)
+{
+  // dismiss the keypad when user presses the cancel button
+  e.source.blur();
+});
 
 suggestionScreen.addEventListener("open", function(e) {
   getTweetsForUser(twitterNameInput.value.trim());
@@ -56,7 +88,8 @@ Ti.API.addEventListener("tweetsLoaded", function(e) {
     loadingLabel.hide();
     loadingIndicator.hide();
     values = sortSuggestionsByCount(e.values);
-    suggestionTable.setData(values);      
+    suggestionTable.setData(values);
+    searchBar.show();      
     suggestionTable.show();
   } else {
     var alertDialog = Titanium.UI.createAlertDialog({
@@ -77,6 +110,8 @@ var createSuggestionWindow = function() {
   // start off with the loading text and the indicator, then when tweets are loaded, change to the table
   suggestionScreen.add(loadingLabel);
   suggestionScreen.add(loadingIndicator);
+  searchBar.hide();
+  suggestionScreen.add(searchBar);
   suggestionTable.hide();  
   suggestionScreen.add(suggestionTable);
   
