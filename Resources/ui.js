@@ -8,7 +8,7 @@ var tabGroup = Titanium.UI.createTabGroup();
 //
 // create base UI tab and root window
 //
-var suggestTweetWindow = Titanium.UI.createWindow({  
+var tweetWindow = Titanium.UI.createWindow({  
     title:'TweetAlyzer',
     backgroundColor:'#fff',
     layout:'vertical',
@@ -30,7 +30,7 @@ var suggestTweetWindow = Titanium.UI.createWindow({
 var mainTab = Titanium.UI.createTab({  
     icon:'KS_nav_views.png',
     title:'TweetAlyzer',
-    window:suggestTweetWindow
+    window:tweetWindow
 });
 
 var twitterNameLabel = Titanium.UI.createLabel({
@@ -56,14 +56,14 @@ twitterNameInput.addEventListener('blur', function(e) {
   twitterNameInput.blur();
 });
 
-var openSuggestionWindow = function() {
-  mainTab.open(createSuggestionWindow());
+var openAnalysisWindow = function() {
+  mainTab.open(createAnalysisWindow());
 }
 
 twitterNameInput.addEventListener("return", function(e) {
   // don't open the window if they didn't type anything
   if(twitterNameInput.value.trim().length > 0) {
-    openSuggestionWindow();  
+    openAnalysisWindow();  
   }  
 });
 
@@ -77,7 +77,7 @@ var okButton = Titanium.UI.createButton({
 });
 
 okButton.addEventListener('click', function(e) {
-  openSuggestionWindow();
+  openAnalysisWindow();
 }); 
 
 // disable ok button if there's no twitter username
@@ -91,13 +91,16 @@ twitterNameInput.addEventListener('change', function(e) {
   }
 });
 
-suggestTweetWindow.add(twitterNameLabel);
-suggestTweetWindow.add(twitterNameInput);
-suggestTweetWindow.add(okButton);
+tweetWindow.add(twitterNameLabel);
+tweetWindow.add(twitterNameInput);
+tweetWindow.add(okButton);
 
 
 //
 //  add tabs
 //
 tabGroup.addTab(mainTab);
-tabGroup.addTab(debugTab);
+if(DEBUG) {
+  tabGroup.addTab(debugTab);  
+}
+

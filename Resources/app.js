@@ -11,14 +11,14 @@ Ti.include(
   "twitter.js", // load Twitter-related functions
   "js_utilities.js", // assorted utility functions
   "test_tweet_values.js", // sample tweet values for testing
-  "suggestion_detail_window.js", // load function to create the detail windows for suggestions
-  "suggestion_window.js", // load function that will create the suggestions window
+  "analysis_detail_window.js", // load function to create the detail windows for analysis
+  "analysis_window.js", // load function that will create the analysis window
   "ui.js" // load the UI elements
 ); 
 
 // if we're in debug mode, show the tabs, otherwise don't
 if(DEBUG) {
-  suggestTweetWindow.tabBarHidden = false;
+  tweetWindow.tabBarHidden = false;
   Ti.include("debug_test.js");  
 }
 

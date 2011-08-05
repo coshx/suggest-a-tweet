@@ -1,5 +1,5 @@
-var createSuggestionDetailWindow = function(suggestionRow, wordCount) {
-  var text = suggestionRow.title;
+var createDetailWindow = function(wordRow, wordCount) {
+  var text = wordRow.title;
   
   var win = Ti.UI.createWindow({
     title:text,
@@ -8,7 +8,7 @@ var createSuggestionDetailWindow = function(suggestionRow, wordCount) {
   });
   
   var countLabel = Ti.UI.createLabel({
-    text: "Number of occurrences: " + suggestionRow.count,
+    text: "Number of occurrences: " + wordRow.count,
     top: 10,
     height: "auto",
     textAlign:'left',
@@ -18,7 +18,7 @@ var createSuggestionDetailWindow = function(suggestionRow, wordCount) {
     }
   });
   
-  var percentage = (suggestionRow.count / wordCount) * 100;
+  var percentage = (wordRow.count / wordCount) * 100;
   var percentageLabel = Ti.UI.createLabel({
     text: "Percentage of words: " + percentage.toFixed(3),
     top: 10,

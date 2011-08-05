@@ -1,8 +1,8 @@
 //
-// Twitter tableview in the suggestionScreen
+// Twitter tableview in the analysisScreen
 
-var sortSuggestionsByCount = function (suggestions) {      
-  return suggestions.sort(function(a, b) { // sorts so that things with a higher count show up higher in the table
+var sortWordsByCount = function (words) {      
+  return words.sort(function(a, b) { // sorts so that things with a higher count show up higher in the table
     return b.count - a.count;
   });
 };
@@ -24,7 +24,7 @@ var loadingIndicator = Ti.UI.createActivityIndicator({
   width: "auto"
 });
 
-var suggestionScreen = Titanium.UI.createWindow({  
+var analysisScreen = Titanium.UI.createWindow({  
   title:'Words & Frequency',
   backgroundColor:'#fff',
   //layout:'vertical',
@@ -34,7 +34,7 @@ var suggestionScreen = Titanium.UI.createWindow({
 
 var searchBarHeight = 44;
 
-var suggestionTable = Ti.UI.createTableView({
+var wordTable = Ti.UI.createTableView({
   top: searchBarHeight
 });
 
@@ -46,18 +46,18 @@ var searchBar = Titanium.UI.createSearchBar({
   height: searchBarHeight
 });
 
-suggestionTable.search = searchBar;
-suggestionTable.searchHidden = true;
+wordTable.search = searchBar;
+wordTable.searchHidden = true;
 
-suggestionTable.addEventListener('click', function(e) {
-  mainTab.open(createSuggestionDetailWindow(e.rowData, suggestionTable.wordCount));
+wordTable.addEventListener('click', function(e) {
+  mainTab.open(createDetailWindow(e.rowData, wordTable.wordCount));
 });
 
 if(DEBUG) { // fill in some test data if we're in debug mode
-  Ti.API.info("adding test values to suggestionTable");
+  Ti.API.info("adding test values to wordTable");
   (function () {  
-    testValues = sortSuggestionsByCount(testTweetValues);
-    suggestionTable.setData(testValues);
+    testValues = sortWordsByCount(testTweetValues);
+    wordTable.setData(testValues);
   })();  
 };
 
@@ -79,7 +79,7 @@ searchBar.addEventListener('cancel', function(e)
   e.source.blur();
 });
 
-suggestionScreen.addEventListener("open", function(e) {
+analysisScreen.addEventListener("open", function(e) {
   getTweetsForUser(twitterNameInput.value.trim());
 });
 
@@ -90,11 +90,11 @@ Ti.API.addEventListener("tweetsLoaded", function(e) {
   if(e.success === true) {
     loadingLabel.hide();
     loadingIndicator.hide();
-    values = sortSuggestionsByCount(e.values);
-    suggestionTable.setData(values);
-    suggestionTable.wordCount = e.wordCount;
+    values = sortWordsByCount(e.values);
+    wordTable.setData(values);
+    wordTable.wordCount = e.wordCount;
     searchBar.show();      
-    suggestionTable.show();
+    wordTable.show();
   } else {
     var alertDialog = Titanium.UI.createAlertDialog({
       title: 'Error',
@@ -102,7 +102,7 @@ Ti.API.addEventListener("tweetsLoaded", function(e) {
       buttonNames: ['Back']
     });
     alertDialog.addEventListener("click", function() {
-      suggestionScreen.close();
+      analysisScreen.close();
     });
     alertDialog.show();      
   }
@@ -110,43 +110,43 @@ Ti.API.addEventListener("tweetsLoaded", function(e) {
 
 // attach widgets to window once
 var attachWidgetsToWindow = function() {
-  suggestionScreen.add(loadingLabel);
-  suggestionScreen.add(loadingIndicator);
+  analysisScreen.add(loadingLabel);
+  analysisScreen.add(loadingIndicator);
   // on android we leave the bar as part of the table, on iOS we add it to the window
   if(ON_ANDROID) {
-    suggestionTable.top = 0;
-    suggestionTable.searchHidden = false;
+    wordTable.top = 0;
+    wordTable.searchHidden = false;
   } else {
-    suggestionScreen.add(searchBar);  
+    analysisScreen.add(searchBar);  
   }  
-  suggestionScreen.add(suggestionTable);
+  analysisScreen.add(wordTable);
 };
 // call it once to initially attach everything
 (function() {attachWidgetsToWindow();}());
 
 // needed on android to prevent blowing up
-var removeWidgetsFromWindow = function(suggestionScreen) {
+var removeWidgetsFromWindow = function(analysisScreen) {
   if(!ON_ANDROID) { return; }
   
-  suggestionScreen.remove(loadingLabel);
-  suggestionScreen.remove(loadingIndicator);
-  suggestionScreen.remove(suggestionTable);
+  analysisScreen.remove(loadingLabel);
+  analysisScreen.remove(loadingIndicator);
+  analysisScreen.remove(wordTable);
 }
 
 
 // set initial visibilities of widgets when screen is opened and empty search bar
-var setupSuggestionUI = function() {
+var setupAnalysisUI = function() {
   loadingLabel.show();
   loadingIndicator.show();
   searchBar.hide();
-  suggestionTable.hide();
+  wordTable.hide();
   searchBar.value = ""; 
 };
 
 // wrapping creation in function so we can easily reset the view to look how we want
-var createSuggestionWindow = function() {
-  setupSuggestionUI();    
-  return suggestionScreen;
+var createAnalysisWindow = function() {
+  setupAnalysisUI();    
+  return analysisScreen;
 };
 
 

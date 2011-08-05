@@ -1,23 +1,15 @@
 Logfile initialized
 [INFO] logfile = /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build.log
-[DEBUG] /Library/Application Support/Titanium/mobilesdk/osx/1.7.2/android/builder.py simulator Suggest-A-Tweet /Users/davekapp/Documents/android/android-sdk-mac_x86 /Users/davekapp/titanium_workspace/Suggest-A-Tweet com.coshx.suggestatweet 6 HVGA 
+[DEBUG] /Library/Application Support/Titanium/mobilesdk/osx/1.7.2/android/builder.py simulator Suggest-A-Tweet /Users/davekapp/Documents/android/android-sdk-mac_x86 /Users/davekapp/titanium_workspace/Suggest-A-Tweet com.coshx.tweetalyze 6 HVGA 
 [INFO] Building Suggest-A-Tweet for Android ... one moment
 [INFO] Titanium SDK version: 1.7.2 (07/21/11 09:36 97c3689)
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
-[TRACE] adb devices returned 1 devices/emulators
-[TRACE] adb devices returned 1 devices/emulators
-[TRACE] adb devices returned 1 devices/emulators
-[DEBUG] Device connected... (waited 15 seconds)
-[DEBUG] waited 15.083641 seconds on emulator to get ready
-[INFO] Waiting for the Android Emulator to become available
-[DEBUG] com.coshx.suggestatweet installed? True
+[DEBUG] Device connected... (waited 0 seconds)
+[DEBUG] waited 0.016060 seconds on emulator to get ready
+[DEBUG] com.coshx.tweetalyze installed? True
 [INFO] Fastdev server running, deploying in Fastdev mode
 [INFO] Copying project resources..
-[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/app.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/app.js
-[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/suggestion_detail_window.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/suggestion_detail_window.js
-[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/suggestion_window.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/suggestion_window.js
-[TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/twitter.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/twitter.js
 [TRACE] COPYING MODIFIED FILE: /Users/davekapp/titanium_workspace/Suggest-A-Tweet/Resources/ui.js => /Users/davekapp/titanium_workspace/Suggest-A-Tweet/build/android/bin/assets/Resources/ui.js
 [INFO] Tiapp.xml unchanged, skipping class generation
 [DEBUG] Processing Android resource drawables
@@ -34,6 +26,5 @@ Logfile initialized
 [INFO] Waiting for SDCard to become available..
 [INFO] Re-launching application ... Suggest-A-Tweet
 [INFO] Launching application ... Suggest-A-Tweet
-[TRACE] Launch output: Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.coshx.suggestatweet/.SuggestATweetActivity }
-[1]   Segmentation fault      am start -a andr...
+[TRACE] Launch output: Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.coshx.tweetalyze/.SuggestATweetActivity }
 

@@ -7,5 +7,5 @@ var testTwitter = (function() {
   Ti.API.info("calling getTweetsForUser...");
   getTweetsForUser("HappyMrDave");
 });
-//();
+
 
