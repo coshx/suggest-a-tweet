@@ -25,7 +25,7 @@ var loadingIndicator = Ti.UI.createActivityIndicator({
 });
 
 var suggestionScreen = Titanium.UI.createWindow({  
-  title:'Suggestions',
+  title:'Words & Frequency',
   backgroundColor:'#fff',
   //layout:'vertical',
   tabBarHidden: true,

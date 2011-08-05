@@ -9,7 +9,7 @@ var tabGroup = Titanium.UI.createTabGroup();
 // create base UI tab and root window
 //
 var suggestTweetWindow = Titanium.UI.createWindow({  
-    title:'Suggest-A-Tweet',
+    title:'TweetAlyzer',
     backgroundColor:'#fff',
     layout:'vertical',
     tabBarHidden: true,    
@@ -29,7 +29,7 @@ var suggestTweetWindow = Titanium.UI.createWindow({
  
 var mainTab = Titanium.UI.createTab({  
     icon:'KS_nav_views.png',
-    title:'Suggest-A-Tweet',
+    title:'TweetAlyzer',
     window:suggestTweetWindow
 });
 
@@ -45,7 +45,7 @@ var twitterNameLabel = Titanium.UI.createLabel({
 });
 
 var twitterNameInput = Titanium.UI.createTextField({
-  hintText: "BillyJoeBob",
+  hintText: "Twitter Name",
   height: 45,
   top: 10,
   width: 250,
@@ -57,7 +57,7 @@ twitterNameInput.addEventListener('blur', function(e) {
 });
 
 var okButton = Titanium.UI.createButton({
-  title:"Get Suggestions",
+  title:"Analyze Tweets",
   width:250,
   height:30,
   top: 10
