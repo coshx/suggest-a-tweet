@@ -41,8 +41,10 @@ var parseTweets = function(tweetsJSON) {
         var text = tweet.text;
         wordsInText = text.split(" ");
         for (var j = 0, length = wordsInText.length; j < length; j++ ) {
-          word = wordsInText[j];
-          if(words[word] === undefined) {
+          word = wordsInText[j].toLowerCase();
+          word = word.replace(/[^\w#@]/g, ""); // get rid of all non-word characters except # and @
+          if (wordsToSkip.indexOf(word) !== -1) {continue;}
+          if(word.length < 1 || words[word] === undefined) {
             words[word] = 1;
           } else {
             words[word]++;
@@ -72,3 +74,12 @@ var parseTweets = function(tweetsJSON) {
     });
   }
 };
+
+var wordsToSkip = [
+  "the", "for", "and", "is", "it", "that", "but",
+  "a", "on", "have", "at", "was", "with", "be",
+  "in", "as", "get", "so", "this", "an", "all",
+  "to", "had", "are", "has", "did", "or", "got",
+  " ", "by", "it", "thats", "from", "than", "before",
+  "of", "lot"
+];
