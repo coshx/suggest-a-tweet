@@ -1,11 +1,40 @@
-Welcome to your Appcelerator Titanium Mobile Project
+--- Overview ---
 
-This is a blank project.  Start by editing your application's app.js to 
-make your first mobile project using Titanium.
+Despite what the repo name is, this project is currently TweetAlyze, rather than Suggest-A-Tweet. I bit off a bit more than I could chew
+for the hackathon so I reduced the scope a little. That said, I think it's still pretty cool. (But I'm biased. ;) )
 
+TweetAlyze lets you analyze the word frequence for any Twitter user that is not blocked from public viewing
+(which is almost all of them). You simply type in the name of the user and hit return (or push the handy button)
+and off you go. Please note that it takes some time to analyze the results (especially on Android).
+
+Words are listed with those being the most frequent at the top. You can tap on any word to see how many times
+it was used by the person. You can filter the results by using the search box at the top. If you search for
+a # sign you can see all the hashtags the person has used, and likewise an @ will show all people they
+directly referenced. If you want to search for the Tweets for a different user, go back to the top
+screen and type in another name. (Some Android versions don't like this and crash if you try to search for a user
+again. I'm not sure why this is.)
+
+--- Running this app ---
+
+You need to install Titanium to run this, preferably Titanium Studio. (It is possible to use from the command line but
+I'm using Studio.) Pull the whole app into a directory and open it (or import it with that option if you prefer).
+
+You will need Xcode installed with the iOS libraries installed (which come with more recent versions of Xcode) on a Mac
+to run the iPhone version. If you do development on a Mac you probably have this. If you don't, you can get it from
+Apple's developer website.
+
+If you want to try the app on Android (warning: iPhone version works better), you will need version 10 of
+the Android SDK. You may or may not need your own device configured. Setting up the Android SDK is a little strange but
+you can get started at http://developer.android.com/sdk/index.html. 
+
+Then just click the little 'play' button in the upper-left in the app explorer view. If you don't see that, try clicking
+the arrow next to the 'play' icon in the main icon bar. The iPhone version runs much faster than the Android one and
+looks nicer, so I really suggest that. 
 
 
 ----------------------------------
+Legal info from Appcelerator:
+
 Stuff our legal folk make us say:
 
 Appcelerator, Appcelerator Titanium and associated marks and logos are 

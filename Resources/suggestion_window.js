@@ -50,7 +50,7 @@ suggestionTable.search = searchBar;
 suggestionTable.searchHidden = true;
 
 suggestionTable.addEventListener('click', function(e) {
-  mainTab.open(createSuggestionDetailWindow(e.rowData));
+  mainTab.open(createSuggestionDetailWindow(e.rowData, suggestionTable.wordCount));
 });
 
 if(DEBUG) { // fill in some test data if we're in debug mode
@@ -83,6 +83,7 @@ suggestionScreen.addEventListener("open", function(e) {
   getTweetsForUser(twitterNameInput.value.trim());
 });
 
+// when tweets are loaded, hide the 'loading' text, and show the table with the info
 Ti.API.addEventListener("tweetsLoaded", function(e) {
   Ti.API.info("got tweetsLoaded");
   
@@ -91,6 +92,7 @@ Ti.API.addEventListener("tweetsLoaded", function(e) {
     loadingIndicator.hide();
     values = sortSuggestionsByCount(e.values);
     suggestionTable.setData(values);
+    suggestionTable.wordCount = e.wordCount;
     searchBar.show();      
     suggestionTable.show();
   } else {
@@ -141,12 +143,8 @@ var setupSuggestionUI = function() {
   searchBar.value = ""; 
 };
 
-// need to wrap creation in function because nothing can be added to the window until it is opened
+// wrapping creation in function so we can easily reset the view to look how we want
 var createSuggestionWindow = function() {
-  // on android we need to unattach everything then re-attach it or else it blows up
-  if(ON_ANDROID) {
-     //removeWidgetsFromWindow();
-  }
   setupSuggestionUI();    
   return suggestionScreen;
 };

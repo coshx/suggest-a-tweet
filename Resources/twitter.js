@@ -37,18 +37,21 @@ var getTweetsForUser = function(userName) {
 };
 
 var parseTweets = function(tweetsJSON) {
-  words = {};
+  var words = {};
+  var totalWordCount = 0;
   try {
     for (var i = 0, length = tweetsJSON.length; i < length; i++) {
       // get the count of all the words in all the tweets into the words object
+      // must do this in a function scope or else the binding of i gets all out of whack
       (function(){
         var tweet = tweetsJSON[i];
         var text = tweet.text;
-        wordsInText = text.split(" ");
+        var wordsInText = text.split(" ");
         for (var j = 0, length = wordsInText.length; j < length; j++ ) {
-          word = wordsInText[j].toLowerCase();
-          word = word.replace(/[^\w#@]/g, ""); // get rid of all non-word characters except # and @
-          if (wordsToSkip.indexOf(word) !== -1) {continue;}
+          word = wordsInText[j].toLowerCase(); // case sensitive messes up matching, so all lower
+          word = word.replace(/[^\w#@]/g, ""); // get rid of all non-word characters except # and @ since those mean something specific in Tweets
+          if (wordsToSkip.indexOf(word) !== -1) {continue;} // if it's in the words to skip, don't count it
+          totalWordCount += 1;
           if(word.length < 1 || words[word] === undefined) {
             words[word] = 1;
           } else {
@@ -59,6 +62,7 @@ var parseTweets = function(tweetsJSON) {
       })();
       
       // now make values that can be used as rows in a table out of the things in words
+      // rows need a title, hasChild to be true (to get the arrow on the right), and a count
       values = [];
       for(word in words) {
         values.push({
@@ -69,9 +73,11 @@ var parseTweets = function(tweetsJSON) {
       }
     }
     
+    // take a gander at suggestion_window.js to see the event handler
     Ti.API.fireEvent("tweetsLoaded", {
       success: true,
-      values: values
+      values: values,
+      wordCount: totalWordCount
     });
   } catch (e) {
     Ti.API.fireEvent("tweetsLoaded", {
